@@ -176,9 +176,9 @@ class Wp_Utilities {
 					if ( $this->utility_is_active( $className ) ) {
 						include_once( $utilities_dir . $file );
 
-						// Only activate some utilites on the frontend
-						if ( is_admin() && ( ! property_exists( $className, 'runs_in_admin' ) || ! $className::$runs_in_admin ) ) {
-							return;
+						// Only activate some utilites in the WP admin
+						if ( is_admin() && ! ( property_exists( $className, 'runs_in_admin' ) && $className::$runs_in_admin ) ) {
+							continue;
 						}
 
 						// Activate output buffer if utility requires it and it has not been activated already
