@@ -5,6 +5,7 @@ class Wp_Utilities_Preload_Images {
 	private $settings;
 
 	public static $needs_html_buffer = true;
+	public static $runs_in_admin = true;
 
 	public function __construct() {
 		$this->settings = array(
@@ -46,13 +47,30 @@ class Wp_Utilities_Preload_Images {
 		return $buffer;
 	}
 
+	public function add_meta_box( $post_type, $post ) {
+		add_meta_box(
+			'wputil_preload_images_metabox',
+			'Preload Images',
+			array( $this, 'render_meta_box' ),
+			null,
+			'side',
+			'low',
+			array( '__block_editor_compatible_meta_box' => true )
+		);
+	}
+	
+	public function render_meta_box( $post ) {
+		$html = '<div>Image Preload form goes here</div>';
+		echo $html;
+	}
+
 	/**
 	 * Execute commands after initialization
 	 *
-	 * @since    0.7.0
+	 * @since    0.8.0
 	 */
 	public function run() {
-		// Iterate over scripts and styles to remove
 		add_filter( 'wp_utilities_modify_final_output', array( $this, 'process_images' ), 9 );
+		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ), 100, 2 );
 	}
 }
