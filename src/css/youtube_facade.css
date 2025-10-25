@@ -9,7 +9,7 @@
 	position: absolute;
 	left: 50%;
 	top: 50%;
-	content: '';
+	content: "";
 	width: 62px;
 	height: 48px;
 	margin-left: -34px;
@@ -34,7 +34,7 @@
 	border-style: solid;
 	border-width: 1em 0 1em 1.732em;
 	border-color: transparent transparent transparent rgba(255, 255, 255, 1);
-	content: ' ';
+	content: " ";
 	font-size: 0.64em;
 	height: 0;
 	margin: -1em 0 0 -0.75em;

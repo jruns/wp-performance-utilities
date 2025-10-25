@@ -53,15 +53,20 @@ class Performance_Utilities_Preload_Images {
 			'Preload Images',
 			array( $this, 'render_meta_box' ),
 			null,
-			'side',
+			'normal',
 			'low',
 			array( '__block_editor_compatible_meta_box' => true )
 		);
 	}
 	
 	public function render_meta_box( $post ) {
-		$html = '<div>Image Preload form goes here</div>';
-		echo $html;
+
+    	$allowed_html = array(
+			'div' => array(),
+		);
+
+		$output = '<div>Image Preload form goes here</div>';
+		echo wp_kses( $output, $allowed_html );
 	}
 
 	/**

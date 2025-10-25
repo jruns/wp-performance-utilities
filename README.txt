@@ -1,6 +1,6 @@
 === Performance Utilities ===
 Contributors: jruns
-Tags: performance, optimization, speed, defer, delay, lcp
+Tags: performance, optimization, speed, defer, delay
 Requires at least: 6.0
 Tested up to: 6.8
 Stable tag: 0.8
