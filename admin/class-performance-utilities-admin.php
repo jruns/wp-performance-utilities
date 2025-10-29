@@ -9,6 +9,10 @@
  * @package    Performance_Utilities
  * @subpackage Performance_Utilities/admin
  */
+
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class Performance_Utilities_Admin {
 
 	/**

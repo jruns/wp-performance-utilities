@@ -1,5 +1,8 @@
 <?php
 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class Performance_Utilities_Move_Scripts_And_Styles_To_Footer {
 
 	private $settings;

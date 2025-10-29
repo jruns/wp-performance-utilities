@@ -18,10 +18,8 @@
  * Text Domain:       performance-utilities
  */
 
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
-}
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 define( 'PERFORMANCE_UTILITIES_VERSION', '0.8' );
 define( 'PERFORMANCE_UTILITIES_BASE_NAME', plugin_basename( __FILE__ ) );

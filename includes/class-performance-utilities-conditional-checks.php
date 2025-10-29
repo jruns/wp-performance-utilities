@@ -10,6 +10,9 @@
  * @subpackage Performance_Utilities/includes
  */
 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class Performance_Utilities_Conditional_Checks {
 	public function __construct() {
 	}

@@ -13,6 +13,10 @@
  * @package    Performance_Utilities
  * @subpackage Performance_Utilities/includes
  */
+
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class Performance_Utilities_Loader {
 
 	/**

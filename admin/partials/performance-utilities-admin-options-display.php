@@ -12,6 +12,9 @@
  * @subpackage Performance_Utilities/admin/partials
  */
 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 $settings = (array) get_option( 'performance_utilities_settings', array() );
 ?>
 <style>;
