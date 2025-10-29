@@ -55,9 +55,8 @@ class PerformanceUtilities_Enable_Youtube_Facade {
 	}
 
 	public function get_footer_code() {
-		$footer_code = "
-<link rel='stylesheet' id='perfutils-youtube-facade-styles-css' href='". plugin_dir_url( __DIR__ ) . 'css/youtube_facade.min.css' . "' media='all' />
-<script id='perfutils-youtube-facade-scripts' src='". plugin_dir_url( __DIR__ ) . 'js/youtube_facade.min.js' . "'></script>
+		$footer_code = "<link rel='stylesheet' id='perfutils-youtube-facade-css' href='". plugin_dir_url( __DIR__ ) . 'css/youtube_facade.min.css' . "' media='all' />
+<script id='perfutils-youtube-facade-js' src='". plugin_dir_url( __DIR__ ) . 'js/youtube_facade.min.js' . "'></script>
 ";
 		return $footer_code;
 	}
