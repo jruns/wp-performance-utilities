@@ -12,14 +12,14 @@
  * @link       https://github.com/jruns/wp-performance-utilities
  * @since      0.1.0
  *
- * @package    Performance_Utilities
- * @subpackage Performance_Utilities/includes
+ * @package    PerformanceUtilities
+ * @subpackage PerformanceUtilities/includes
  */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class Performance_Utilities {
+class PerformanceUtilities {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -27,7 +27,7 @@ class Performance_Utilities {
 	 *
 	 * @since    0.1.0
 	 * @access   protected
-	 * @var      Performance_Utilities_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      PerformanceUtilities_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -94,10 +94,10 @@ class Performance_Utilities {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Performance_Utilities_Loader. Orchestrates the hooks of the plugin.
-	 * - Performance_Utilities_i18n. Defines internationalization functionality.
-	 * - Performance_Utilities_Admin. Defines all hooks for the admin area.
-	 * - Performance_Utilities_Public. Defines all hooks for the public side of the site.
+	 * - PerformanceUtilities_Loader. Orchestrates the hooks of the plugin.
+	 * - PerformanceUtilities_i18n. Defines internationalization functionality.
+	 * - PerformanceUtilities_Admin. Defines all hooks for the admin area.
+	 * - PerformanceUtilities_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -123,7 +123,7 @@ class Performance_Utilities {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-performance-utilities-admin.php';
 
-		$this->loader = new Performance_Utilities_Loader();
+		$this->loader = new PerformanceUtilities_Loader();
 
 	}
 
@@ -136,7 +136,7 @@ class Performance_Utilities {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Performance_Utilities_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new PerformanceUtilities_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'registersettings' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_options_page' );
@@ -152,7 +152,7 @@ class Performance_Utilities {
 	}
 
 	private function utility_is_active( $className ) {
-		$className = str_replace( 'Performance_Utilities_', '', $className );
+		$className = str_replace( 'PerformanceUtilities_', '', $className );
 
 		$constant_name = strtoupper( 'wppu_' . $className );
 		$utility_name = strtolower( $className );
@@ -216,7 +216,7 @@ class Performance_Utilities {
 	private function activate_html_buffer() {
 		if ( ! $this->buffer_is_active ) {
 			require_once plugin_dir_path( __FILE__ ) . 'class-performance-utilities-html-buffer.php';
-			new Performance_Utilities_Html_Buffer();
+			new PerformanceUtilities_Html_Buffer();
 
 			$this->buffer_is_active = true;
 		}
@@ -246,7 +246,7 @@ class Performance_Utilities {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     0.1.0
-	 * @return    Performance_Utilities_Loader    Orchestrates the hooks of the plugin.
+	 * @return    PerformanceUtilities_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

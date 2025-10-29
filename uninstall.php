@@ -6,7 +6,7 @@
  * @link       https://github.com/jruns/wp-performance-utilities
  * @since      0.1.0
  *
- * @package    Performance_Utilities
+ * @package    PerformanceUtilities
  */
 
 // Exit if accessed directly

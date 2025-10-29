@@ -3,7 +3,7 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class Performance_Utilities_Remove_Versions {
+class PerformanceUtilities_Remove_Versions {
 
 	private $settings;
 

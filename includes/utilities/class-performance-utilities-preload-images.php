@@ -3,7 +3,7 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class Performance_Utilities_Preload_Images {
+class PerformanceUtilities_Preload_Images {
 
 	private $settings;
 
@@ -20,7 +20,7 @@ class Performance_Utilities_Preload_Images {
 
 	public function process_images( $buffer ) {
 		// Filter out settings that are not valid for the current page, based on conditional matches
-		$this->settings['images'] = Performance_Utilities_Conditional_Checks::filter_matches( $this->settings['images'] );
+		$this->settings['images'] = PerformanceUtilities_Conditional_Checks::filter_matches( $this->settings['images'] );
 
 		$preload_tags = '';
 

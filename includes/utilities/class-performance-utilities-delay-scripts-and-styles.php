@@ -3,7 +3,7 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class Performance_Utilities_Delay_Scripts_And_Styles {
+class PerformanceUtilities_Delay_Scripts_And_Styles {
 
 	private $settings;
 
@@ -21,7 +21,7 @@ class Performance_Utilities_Delay_Scripts_And_Styles {
 
 	public function process_delays( $buffer ) {
 		// Filter out delays that are not valid for the current page, based on conditional matches
-		$this->settings['scripts'] = Performance_Utilities_Conditional_Checks::filter_matches( $this->settings['scripts'] );
+		$this->settings['scripts'] = PerformanceUtilities_Conditional_Checks::filter_matches( $this->settings['scripts'] );
 
 		// Process delays
 		if ( ! empty( $this->settings['scripts'] ) ) {
@@ -33,7 +33,7 @@ class Performance_Utilities_Delay_Scripts_And_Styles {
 				'operation'			=> 'delay'
 			);
 
-			$buffer = Performance_Utilities_Html_Buffer::process_buffer_replacements( $buffer, $match_args );
+			$buffer = PerformanceUtilities_Html_Buffer::process_buffer_replacements( $buffer, $match_args );
 		}
 
 		if ( ! empty( $this->settings['styles'] ) ) {
@@ -46,7 +46,7 @@ class Performance_Utilities_Delay_Scripts_And_Styles {
 				'operation'			=> 'delay'
 			);
 
-			$buffer = Performance_Utilities_Html_Buffer::process_buffer_replacements( $buffer, $match_args );
+			$buffer = PerformanceUtilities_Html_Buffer::process_buffer_replacements( $buffer, $match_args );
 		}
 
 		return $buffer;

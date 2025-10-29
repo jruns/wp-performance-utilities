@@ -4,7 +4,7 @@
  *
  * @link              https://github.com/jruns
  * @since             0.1
- * @package           Performance_Utilities
+ * @package           PerformanceUtilities
  *
  * @wordpress-plugin
  * Plugin Name:       Performance Utilities 
@@ -30,7 +30,7 @@ define( 'PERFUTILS_BASE_NAME', plugin_basename( __FILE__ ) );
  */
 function activate_performance_utilities() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-performance-utilities-activator.php';
-	Performance_Utilities_Activator::activate();
+	PerformanceUtilities_Activator::activate();
 }
 
 /**
@@ -39,14 +39,14 @@ function activate_performance_utilities() {
  */
 function deactivate_performance_utilities() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-performance-utilities-deactivator.php';
-	Performance_Utilities_Deactivator::deactivate();
+	PerformanceUtilities_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_performance_utilities' );
 register_deactivation_hook( __FILE__, 'deactivate_performance_utilities' );
 
 /**
- * The core plugin class that is used to define internationalization,
+ * The core plugin class that is used to load active utilities,
  * admin-specific hooks, and public-facing site hooks.
  */
 require plugin_dir_path( __FILE__ ) . 'includes/class-performance-utilities.php';
@@ -62,7 +62,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-performance-utilities.php'
  */
 function run_performance_utilities() {
 
-	$plugin = new Performance_Utilities();
+	$plugin = new PerformanceUtilities();
 	$plugin->run();
 
 }

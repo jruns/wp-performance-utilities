@@ -3,7 +3,7 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class Performance_Utilities_Move_Scripts_And_Styles_To_Footer {
+class PerformanceUtilities_Move_Scripts_And_Styles_To_Footer {
 
 	private $settings;
 
@@ -20,8 +20,8 @@ class Performance_Utilities_Move_Scripts_And_Styles_To_Footer {
 
 	public function process_moves( $buffer ) {
 		// Filter out moves that are not valid for the current page, based on conditional matches
-		$this->settings['scripts'] = Performance_Utilities_Conditional_Checks::filter_matches( $this->settings['scripts'] );
-		$this->settings['styles'] = Performance_Utilities_Conditional_Checks::filter_matches( $this->settings['styles'] );
+		$this->settings['scripts'] = PerformanceUtilities_Conditional_Checks::filter_matches( $this->settings['scripts'] );
+		$this->settings['styles'] = PerformanceUtilities_Conditional_Checks::filter_matches( $this->settings['styles'] );
 
 		// Process moves
 		if ( ! empty( $this->settings['scripts'] ) ) {
@@ -32,7 +32,7 @@ class Performance_Utilities_Move_Scripts_And_Styles_To_Footer {
 				'match_types'		=> array( 'id', 'src', 'code' ),
 				'operation'			=> 'move_to_footer'
 			);
-			$buffer = Performance_Utilities_Html_Buffer::process_buffer_replacements( $buffer, $match_args );
+			$buffer = PerformanceUtilities_Html_Buffer::process_buffer_replacements( $buffer, $match_args );
 		}
 
 		if ( ! empty( $this->settings['styles'] ) ) {
@@ -43,7 +43,7 @@ class Performance_Utilities_Move_Scripts_And_Styles_To_Footer {
 				'match_types'		=> array( 'id', 'href', 'code' ),
 				'operation'			=> 'move_to_footer'
 			);
-			$buffer = Performance_Utilities_Html_Buffer::process_buffer_replacements( $buffer, $match_args );
+			$buffer = PerformanceUtilities_Html_Buffer::process_buffer_replacements( $buffer, $match_args );
 		}
 
 		return $buffer;

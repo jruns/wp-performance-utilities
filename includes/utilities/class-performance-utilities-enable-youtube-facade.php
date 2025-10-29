@@ -3,7 +3,7 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class Performance_Utilities_Enable_Youtube_Facade {
+class PerformanceUtilities_Enable_Youtube_Facade {
 
 	private $settings;
 

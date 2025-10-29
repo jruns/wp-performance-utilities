@@ -8,8 +8,8 @@
  * @link       https://github.com/jruns/wp-performance-utilities
  * @since      0.1.0
  *
- * @package    Performance_Utilities
- * @subpackage Performance_Utilities/admin/partials
+ * @package    PerformanceUtilities
+ * @subpackage PerformanceUtilities/admin/partials
  */
 
 // Exit if accessed directly
