@@ -52,7 +52,7 @@ class PerformanceUtilities {
 	/**
 	 * The current plugin settings.
 	 *
-	 * @since    0.8
+	 * @since    0.8.0
 	 * @access   protected
 	 * @var      array    $settings    The current plugin settings.
 	 */
@@ -80,7 +80,7 @@ class PerformanceUtilities {
 		if ( defined( 'PERFUTILS_VERSION' ) ) {
 			$this->version = PERFUTILS_VERSION;
 		} else {
-			$this->version = '0.8';
+			$this->version = '0.8.0';
 		}
 		$this->plugin_name = 'performance-utilities';
 

@@ -3,7 +3,7 @@ Contributors: jruns
 Tags: performance, optimization, speed, defer, delay
 Requires at least: 6.0
 Tested up to: 6.8
-Stable tag: 0.8
+Stable tag: 0.8.0
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -40,5 +40,5 @@ Because websites should be fast without costing money.
 
 == Changelog ==
 
-= 0.8 =
+= 0.8.0 =
 * Initial plugin repository release with several performance utilities.

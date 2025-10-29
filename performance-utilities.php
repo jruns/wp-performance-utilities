@@ -10,7 +10,7 @@
  * Plugin Name:       Performance Utilities 
  * Plugin URI:        https://github.com/jruns/wp-performance-utilities
  * Description:       Utilities to improve the performance of your WordPress site.
- * Version:           0.8
+ * Version:           0.8.0
  * Author:            Jason Schramm
  * Author URI:        https://github.com/jruns
  * License:           GPL-2.0+
@@ -21,7 +21,7 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'PERFUTILS_VERSION', '0.8' );
+define( 'PERFUTILS_VERSION', '0.8.0' );
 define( 'PERFUTILS_BASE_NAME', plugin_basename( __FILE__ ) );
 
 /**
