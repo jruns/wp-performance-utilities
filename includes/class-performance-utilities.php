@@ -148,7 +148,7 @@ class PerformanceUtilities {
 			'active_utilities' => array()
 		);
 
-		$this->settings = wp_parse_args( get_option( 'performance_utilities_settings' ), $defaults );
+		$this->settings = wp_parse_args( get_option( 'perfutils_settings' ), $defaults );
 	}
 
 	private function utility_is_active( $className ) {

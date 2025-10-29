@@ -148,7 +148,7 @@ class PerformanceUtilities_Delay_Scripts_And_Styles {
 			$autoLoadDelay = intval( constant( $delay_constant ) );
 		} else {
 			// get option, default to 15000 milliseconds if not set
-			$options = (array) get_option( 'performance_utilities_settings', array() );
+			$options = (array) get_option( 'perfutils_settings', array() );
 			if ( array_key_exists( $className, $options ) && array_key_exists( $delay_var, $options[$className] ) ) {
 				$autoLoadDelay = $options[$className][$delay_var];
 			}

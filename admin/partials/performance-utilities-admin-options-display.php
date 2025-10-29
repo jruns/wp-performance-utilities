@@ -15,7 +15,7 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$settings = (array) get_option( 'performance_utilities_settings', array() );
+$settings = (array) get_option( 'perfutils_settings', array() );
 ?>
 <style>;
     }
@@ -199,7 +199,7 @@ function output_admin_option( $args, $settings, $should_return = false ) {
         $child_output = "<table class='child-table'>" . $child_output . "</table>";
     }
 
-    $form_field_name = "performance_utilities_settings" . ( $parent ? "[$parent]" : "[active_utilities]" ). "[$name]";
+    $form_field_name = "perfutils_settings" . ( $parent ? "[$parent]" : "[active_utilities]" ). "[$name]";
 
     $input_output = "<input type='checkbox' name='$form_field_name' value='1' " . ( $utility_value ? "checked='checked'" : '' ) . ( defined( $utility_constant ) ? ' disabled' : '' ) . "/>" . $description . "$after_label_msg";
     if ( ! empty( $type ) ) {
