@@ -15,7 +15,7 @@ class PerformanceUtilities_Move_Scripts_And_Styles_To_Footer {
 			'styles'	=> array()
 		);
 
-		$this->settings = apply_filters( 'wppu_scripts_and_styles_to_move_to_footer', $this->settings ) ?? $this->settings;
+		$this->settings = apply_filters( 'perfutils_scripts_and_styles_to_move_to_footer', $this->settings ) ?? $this->settings;
 	}
 
 	public function process_moves( $buffer ) {
@@ -56,6 +56,6 @@ class PerformanceUtilities_Move_Scripts_And_Styles_To_Footer {
 	 */
 	public function run() {
 		// Iterate over scripts and styles to move to the footer
-		add_filter( 'wppu_modify_final_output', array( $this, 'process_moves' ), 6 );
+		add_filter( 'perfutils_modify_final_output', array( $this, 'process_moves' ), 6 );
 	}
 }

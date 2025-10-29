@@ -95,9 +95,8 @@ class PerformanceUtilities {
 	 * Include the following files that make up the plugin:
 	 *
 	 * - PerformanceUtilities_Loader. Orchestrates the hooks of the plugin.
-	 * - PerformanceUtilities_i18n. Defines internationalization functionality.
+	 * - PerformanceUtilities_Conditional_Checks. Defines page conditional processing.
 	 * - PerformanceUtilities_Admin. Defines all hooks for the admin area.
-	 * - PerformanceUtilities_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -111,17 +110,17 @@ class PerformanceUtilities {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-performance-utilities-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-loader.php';
 		
 		/**
 		 * The class responsible for defining functions for page conditional processing.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-performance-utilities-conditional-checks.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-conditional-checks.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-performance-utilities-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-admin.php';
 
 		$this->loader = new PerformanceUtilities_Loader();
 
@@ -154,7 +153,7 @@ class PerformanceUtilities {
 	private function utility_is_active( $className ) {
 		$className = str_replace( 'PerformanceUtilities_', '', $className );
 
-		$constant_name = strtoupper( 'wppu_' . $className );
+		$constant_name = strtoupper( 'perfutils_' . $className );
 		$utility_name = strtolower( $className );
 
 		if( defined( $constant_name ) ) {
@@ -215,7 +214,7 @@ class PerformanceUtilities {
 	 */
 	private function activate_html_buffer() {
 		if ( ! $this->buffer_is_active ) {
-			require_once plugin_dir_path( __FILE__ ) . 'class-performance-utilities-html-buffer.php';
+			require_once plugin_dir_path( __FILE__ ) . 'class-html-buffer.php';
 			new PerformanceUtilities_Html_Buffer();
 
 			$this->buffer_is_active = true;

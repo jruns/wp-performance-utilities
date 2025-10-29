@@ -17,7 +17,7 @@ This utility removes the jQuery Migrate javascript file from the frontend. It do
 
 Add this to your wp-config.php file to activate the utility:
 ```php
-define( 'WPPU_DISABLE_JQUERY_MIGRATE', true );
+define( 'PERFUTILS_DISABLE_JQUERY_MIGRATE', true );
 ```
 Or activate the utility on the Performance Utilities wp-admin options page.
 
@@ -26,7 +26,7 @@ This utility removes versions from the source urls of external scripts and style
 
 Add this to your wp-config.php file to activate the utility:
 ```php
-define( 'WPPU_REMOVE_VERSIONS', true );
+define( 'PERFUTILS_REMOVE_VERSIONS', true );
 ```
 Or activate the utility on the Performance Utilities wp-admin options page.
 
@@ -35,7 +35,7 @@ This utility replaces YouTube iframes with an image placeholder (facade) on any 
 
 Add this to your wp-config.php file to activate the utility:  
 ```php
-define( 'WPPU_ENABLE_YOUTUBE_FACADE', true );
+define( 'PERFUTILS_ENABLE_YOUTUBE_FACADE', true );
 ```
 Or activate the utility on the Performance Utilities wp-admin options page.  
 
@@ -44,10 +44,10 @@ This utility moves specified javascript scripts and css styles to the page foote
 
 Add this to your wp-config.php file to enable the utility:  
 ```php
-define( 'WPPU_MOVE_SCRIPTS_AND_STYLES_TO_FOOTER', true );
+define( 'PERFUTILS_MOVE_SCRIPTS_AND_STYLES_TO_FOOTER', true );
 ```
 
-Then specify scripts and styles to be moved with the `wppu_scripts_and_styles_to_move_to_footer` filter by adding something like the following to your functions.php file:  
+Then specify scripts and styles to be moved with the `perfutils_scripts_and_styles_to_move_to_footer` filter by adding something like the following to your functions.php file:  
 ```php
 function move_scripts_and_styles_to_footer( $settings ) {
     $settings['scripts'][] = array( 
@@ -84,7 +84,7 @@ function move_scripts_and_styles_to_footer( $settings ) {
 
     return $settings;
 }
-add_filter( 'wppu_scripts_and_styles_to_move_to_footer', 'move_scripts_and_styles_to_footer', 10, 1 );
+add_filter( 'perfutils_scripts_and_styles_to_move_to_footer', 'move_scripts_and_styles_to_footer', 10, 1 );
 ```
 
 #### Filter settings options for script tags:
@@ -108,10 +108,10 @@ This utility removes specified javascript scripts and css styles from the fronte
 
 Add this to your wp-config.php file to enable the utility:  
 ```php
-define( 'WPPU_REMOVE_SCRIPTS_AND_STYLES', true );
+define( 'PERFUTILS_REMOVE_SCRIPTS_AND_STYLES', true );
 ```
 
-Then specify scripts and styles to be removed with the `wppu_scripts_and_styles_to_remove` filter by adding something like the following to your functions.php file:  
+Then specify scripts and styles to be removed with the `perfutils_scripts_and_styles_to_remove` filter by adding something like the following to your functions.php file:  
 ```php
 function remove_scripts_and_styles( $settings ) {
     $settings['scripts'][] = array( 
@@ -148,7 +148,7 @@ function remove_scripts_and_styles( $settings ) {
 
     return $settings;
 }
-add_filter( 'wppu_scripts_and_styles_to_remove', 'remove_scripts_and_styles', 10, 1 );
+add_filter( 'perfutils_scripts_and_styles_to_remove', 'remove_scripts_and_styles', 10, 1 );
 ```
 
 #### Filter settings options for script tags:
@@ -176,18 +176,18 @@ Any script tag with one of the following attributes will be excluded from being 
 
 Add this to your wp-config.php file to enable the utility:  
 ```php
-define( 'WPPU_DELAY_SCRIPTS_AND_STYLES', true );
+define( 'PERFUTILS_DELAY_SCRIPTS_AND_STYLES', true );
 ```
 Or activate the utility on the Performance Utilities wp-admin options page.  
 
 To modify the default user interaction autoload delay of 15000 milliseconds (15s), you can add this to your wp-config.php file:  
 ```php
-define( 'WPPU_DELAY_SCRIPTS_AND_STYLES_AUTOLOAD_DELAY', 15000 );
+define( 'PERFUTILS_DELAY_SCRIPTS_AND_STYLES_AUTOLOAD_DELAY', 15000 );
 ```
 Or override the default value in the Performance Utilities wp-admin options page.  
 The value entered should be in milliseconds. This is a failsafe that will ensure that a script will still load even if the user takes longer to interact with the page.  
 
-Then specify the scripts or stylesheets to be delayed with the `wppu_scripts_and_styles_to_delay` filter by adding something like the following to your functions.php file:  
+Then specify the scripts or stylesheets to be delayed with the `perfutils_scripts_and_styles_to_delay` filter by adding something like the following to your functions.php file:  
 ```php
 function delay_scripts_and_styles( $settings ) {
     $settings['scripts'][] = array( 
@@ -220,7 +220,7 @@ function delay_scripts_and_styles( $settings ) {
 
     return $settings;
 }
-add_filter( 'wppu_scripts_and_styles_to_delay', 'delay_scripts_and_styles', 10, 1 );
+add_filter( 'perfutils_scripts_and_styles_to_delay', 'delay_scripts_and_styles', 10, 1 );
 ```
 
 #### Filter settings options for script tags:
@@ -241,7 +241,7 @@ Add individual configurations by adding a new array to the `styles` key in the v
 | where     | Optional | String or Array. Available options: `all` for matching all posts/pages, select WP conditionals, and `path_` or `not_path_` for matching url path. Defaults to `all` if `where` is not specified. Arrays allow you to combine multiple conditions with an AND-like search (only pages containing all conditions will be matched).<br/><br/>Available WP conditionals: is_home, is_front_page, is_single, is_page, is_author, is_archive, has_excerpt, is_search, is_404, is_paged, is_attachment, is_singular, is_user_logged_in, not_is_home, not_is_front_page, not_is_single, not_is_page, not_is_author, not_is_archive, not_has_excerpt, not_is_search, not_is_404, not_is_paged, not_is_attachment, not_is_singular, not_is_user_logged_in |
 
 #### How to use the new DOMUserInteraction event:
-You must first have at least one script being delayed on a specified page with the `wppu_scripts_to_delay` filter. Then the new event will be available on that page.  
+You must first have at least one script being delayed on a specified page with the `perfutils_scripts_to_delay` filter. Then the new event will be available on that page.  
 ```php
 document.addEventListener( "DOMUserInteraction", () => {
   console.log( "User has interacted with the page" );
@@ -253,10 +253,10 @@ This utility allows you to preload specific images on the frontend. This can imp
 
 Add this to your wp-config.php file to enable the utility:  
 ```php
-define( 'WPPU_PRELOAD_IMAGES', true );
+define( 'PERFUTILS_PRELOAD_IMAGES', true );
 ```
 
-Then specify images to be preloaded with the `wppu_images_to_preload` filter by adding something like the following to your functions.php file:  
+Then specify images to be preloaded with the `perfutils_images_to_preload` filter by adding something like the following to your functions.php file:  
 ```php
 function images_to_preload( $settings ) {
     $settings['images'][] = array(
@@ -282,7 +282,7 @@ function images_to_preload( $settings ) {
 
     return $settings;
 }
-add_filter( 'wppu_images_to_preload', 'images_to_preload', 10, 1 );
+add_filter( 'perfutils_images_to_preload', 'images_to_preload', 10, 1 );
 ```
 
 #### Filter settings options for images:

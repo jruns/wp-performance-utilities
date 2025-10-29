@@ -16,7 +16,7 @@ class PerformanceUtilities_Delay_Scripts_And_Styles {
 			'scripts'	=> array()
 		);
 
-		$this->settings = apply_filters( 'wppu_scripts_and_styles_to_delay', $this->settings ) ?? $this->settings;
+		$this->settings = apply_filters( 'perfutils_scripts_and_styles_to_delay', $this->settings ) ?? $this->settings;
 	}
 
 	public function process_delays( $buffer ) {
@@ -141,7 +141,7 @@ class PerformanceUtilities_Delay_Scripts_And_Styles {
 	public static function get_user_interaction_delay_script() {
 		$className = 'delay_scripts_and_styles';
 		$delay_var = 'autoload_delay';
-		$delay_constant = strtoupper( 'wppu_' . $className . '_' . $delay_var );
+		$delay_constant = strtoupper( 'perfutils_' . $className . '_' . $delay_var );
 		$autoLoadDelay = null;
 
 		if ( defined( $delay_constant ) && is_numeric( constant( $delay_constant ) ) ) {
@@ -157,8 +157,8 @@ class PerformanceUtilities_Delay_Scripts_And_Styles {
 			}
 		}
 
-		return '<script>const wppuAutoLoadDelay = ' . $autoLoadDelay . ';</script>' . PHP_EOL . 
-			'<script defer>{const e=wppuAutoLoadDelay,t=["mouseover","keydown","touchmove","touchstart"],o=()=>{const e=new Event("DOMUserInteraction");document.dispatchEvent(e),console.log("interacted"),document.querySelectorAll("script[data-type=user_interaction_delay]").forEach((e=>e.src=e.dataset.src)),t.forEach((e=>window.removeEventListener(e,c,{passive:!0,once:!0})))},n=setTimeout(o,e),c=()=>{o(),clearTimeout(n)};t.forEach((e=>window.addEventListener(e,c,{passive:!0,once:!0})))}</script>';
+		return '<script>const perfutilsAutoLoadDelay = ' . $autoLoadDelay . ';</script>' . PHP_EOL . 
+			'<script defer>{const e=perfutilsAutoLoadDelay,t=["mouseover","keydown","touchmove","touchstart"],o=()=>{const e=new Event("DOMUserInteraction");document.dispatchEvent(e),console.log("interacted"),document.querySelectorAll("script[data-type=user_interaction_delay]").forEach((e=>e.src=e.dataset.src)),t.forEach((e=>window.removeEventListener(e,c,{passive:!0,once:!0})))},n=setTimeout(o,e),c=()=>{o(),clearTimeout(n)};t.forEach((e=>window.addEventListener(e,c,{passive:!0,once:!0})))}</script>';
 	}
 
 	/**
@@ -177,6 +177,6 @@ class PerformanceUtilities_Delay_Scripts_And_Styles {
 	 */
 	public function run() {
 		// Iterate over scripts to delay
-		add_filter( 'wppu_modify_final_output', array( $this, 'process_delays' ), 20 );
+		add_filter( 'perfutils_modify_final_output', array( $this, 'process_delays' ), 20 );
 	}
 }

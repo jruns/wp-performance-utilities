@@ -78,7 +78,7 @@ class PerformanceUtilities_Admin {
 	}
 
 	public function render_options_page() {
-		require_once( plugin_dir_path( __FILE__ ) . 'partials/performance-utilities-admin-options-display.php' );
+		require_once( plugin_dir_path( __FILE__ ) . 'partials/admin-options-display.php' );
 	}
 
 	public function add_plugin_action_links( array $links ) {

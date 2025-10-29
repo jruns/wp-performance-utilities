@@ -26,19 +26,19 @@ define( 'PERFUTILS_BASE_NAME', plugin_basename( __FILE__ ) );
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-performance-utilities-activator.php
+ * This action is documented in includes/class-activator.php
  */
 function activate_performance_utilities() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-performance-utilities-activator.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-activator.php';
 	PerformanceUtilities_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-performance-utilities-deactivator.php
+ * This action is documented in includes/class-deactivator.php
  */
 function deactivate_performance_utilities() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-performance-utilities-deactivator.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-deactivator.php';
 	PerformanceUtilities_Deactivator::deactivate();
 }
 
@@ -49,7 +49,7 @@ register_deactivation_hook( __FILE__, 'deactivate_performance_utilities' );
  * The core plugin class that is used to load active utilities,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-performance-utilities.php';
+require plugin_dir_path( __FILE__ ) . 'includes/class-performanceutilities.php';
 
 /**
  * Begins execution of the plugin.

@@ -31,6 +31,6 @@ class PerformanceUtilities_Remove_Versions {
 	 * @since    0.6.0
 	 */
 	public function run() {
-		add_filter( 'wppu_modify_final_output', array( $this, 'process_version_removals' ), 10 );
+		add_filter( 'perfutils_modify_final_output', array( $this, 'process_version_removals' ), 10 );
 	}
 }

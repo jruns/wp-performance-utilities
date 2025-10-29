@@ -15,7 +15,7 @@ class PerformanceUtilities_Remove_Scripts_And_Styles {
 			'styles'	=> array()
 		);
 
-		$this->settings = apply_filters( 'wppu_scripts_and_styles_to_remove', $this->settings ) ?? $this->settings;
+		$this->settings = apply_filters( 'perfutils_scripts_and_styles_to_remove', $this->settings ) ?? $this->settings;
 	}
 
 	public function process_removals( $buffer ) {
@@ -56,6 +56,6 @@ class PerformanceUtilities_Remove_Scripts_And_Styles {
 	 */
 	public function run() {
 		// Iterate over scripts and styles to remove
-		add_filter( 'wppu_modify_final_output', array( $this, 'process_removals' ), 15 );
+		add_filter( 'perfutils_modify_final_output', array( $this, 'process_removals' ), 15 );
 	}
 }

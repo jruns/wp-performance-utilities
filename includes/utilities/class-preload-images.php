@@ -15,7 +15,7 @@ class PerformanceUtilities_Preload_Images {
 			'images'	=> array()
 		);
 
-		$this->settings = apply_filters( 'wppu_images_to_preload', $this->settings ) ?? $this->settings;
+		$this->settings = apply_filters( 'perfutils_images_to_preload', $this->settings ) ?? $this->settings;
 	}
 
 	public function process_images( $buffer ) {
@@ -52,7 +52,7 @@ class PerformanceUtilities_Preload_Images {
 
 	public function add_meta_box( $post_type, $post ) {
 		add_meta_box(
-			'wppu_preload_images_metabox',
+			'perfutils_preload_images_metabox',
 			'Preload Images',
 			array( $this, 'render_meta_box' ),
 			null,
@@ -78,7 +78,7 @@ class PerformanceUtilities_Preload_Images {
 	 * @since    0.8.0
 	 */
 	public function run() {
-		add_filter( 'wppu_modify_final_output', array( $this, 'process_images' ), 9 );
+		add_filter( 'perfutils_modify_final_output', array( $this, 'process_images' ), 9 );
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ), 100, 2 );
 	}
 }

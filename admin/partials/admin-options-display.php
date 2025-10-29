@@ -111,21 +111,21 @@ output_admin_option( $args, $settings );
 $args = array(
     'name'              => 'move_scripts_and_styles_to_footer',
     'heading'           => 'Move Scripts and Styles to the footer?',
-    'description'       => 'Enable the `wppu_scripts_and_styles_to_move_to_footer` WordPress filter to selectively move scripts and styles to the page footer on the frontend.'
+    'description'       => 'Enable the `perfutils_scripts_and_styles_to_move_to_footer` WordPress filter to selectively move scripts and styles to the page footer on the frontend.'
 );
 output_admin_option( $args, $settings );
 
 $args = array(
     'name'              => 'remove_scripts_and_styles',
     'heading'           => 'Remove Scripts and Styles?',
-    'description'       => 'Enable the `wppu_scripts_and_styles_to_remove` WordPress filter to selectively remove scripts and styles from the frontend.'
+    'description'       => 'Enable the `perfutils_scripts_and_styles_to_remove` WordPress filter to selectively remove scripts and styles from the frontend.'
 );
 output_admin_option( $args, $settings );
 
 $args = array(
     'name'              => 'delay_scripts_and_styles',
     'heading'           => 'Delay Scripts?',
-    'description'       => 'Enable the `wppu_scripts_and_styles_to_delay` WordPress filter to selectively delay javascript and stylesheets on the frontend.',
+    'description'       => 'Enable the `perfutils_scripts_and_styles_to_delay` WordPress filter to selectively delay javascript and stylesheets on the frontend.',
     'child_options'     => array(
         array(
             'name'              => 'autoload_delay',
@@ -141,7 +141,7 @@ output_admin_option( $args, $settings );
 $args = array(
     'name'              => 'preload_images',
     'heading'           => 'Preload Images?',
-    'description'       => 'Enable the `wppu_images_to_preload` WordPress filter to selectively preload images on the frontend to improve Largest Contentful Paint (LCP).'
+    'description'       => 'Enable the `perfutils_images_to_preload` WordPress filter to selectively preload images on the frontend to improve Largest Contentful Paint (LCP).'
 );
 output_admin_option( $args, $settings );
 ?>
@@ -168,7 +168,7 @@ function output_admin_option( $args, $settings, $should_return = false ) {
     $default = $args['default'] ?? '';
     $child_options = $args['child_options'] ?? array();
 
-    $utility_constant = strtoupper( 'wppu_' . ( $parent ? $parent . '_' : '' ) . $name );
+    $utility_constant = strtoupper( 'perfutils_' . ( $parent ? $parent . '_' : '' ) . $name );
     $utility_value = null;
     $placeholder = '';
     $after_label_msg = '';

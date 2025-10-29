@@ -23,7 +23,7 @@ class PerformanceUtilities_Html_Buffer {
 	}
 
 	static function filter_buffer( $buffer ) {
-		$buffer = apply_filters( 'wppu_modify_final_output', $buffer );
+		$buffer = apply_filters( 'perfutils_modify_final_output', $buffer );
 		return $buffer;
 	}
 
