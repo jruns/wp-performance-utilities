@@ -46,7 +46,8 @@ perfutils_output_admin_option( $args, $perfutils_settings );
 ?>
 </table>
 
-<h2 class="itemTitle"><?php esc_html_e( 'Render-Blocking Utilities', 'performance-utilities' ); ?></h2>
+
+<h2 class="itemTitle"><?php esc_html_e( 'Facade Utilities', 'performance-utilities' ); ?></h2>
 
 <table class="form-table">
 <?php
@@ -56,7 +57,28 @@ $args = array(
     'description'       => 'Enable YouTube facade for videos on the frontend, and delay loading videos until the user clicks the placeholder image.'
 );
 perfutils_output_admin_option( $args, $perfutils_settings );
+?>
+</table>
 
+
+<h2 class="itemTitle"><?php esc_html_e( 'Largest Contentful Paint Utilities', 'performance-utilities' ); ?></h2>
+
+<table class="form-table">
+<?php
+$args = array(
+    'name'              => 'preload_images',
+    'heading'           => 'Preload Images?',
+    'description'       => 'Enable the `perfutils_images_to_preload` WordPress filter to selectively preload images on the frontend.'
+);
+perfutils_output_admin_option( $args, $perfutils_settings );
+?>
+</table>
+
+
+<h2 class="itemTitle"><?php esc_html_e( 'Render-Blocking Utilities', 'performance-utilities' ); ?></h2>
+
+<table class="form-table">
+<?php
 $args = array(
     'name'              => 'move_scripts_and_styles_to_footer',
     'heading'           => 'Move Scripts and Styles to the footer?',
@@ -84,19 +106,6 @@ $args = array(
             'description'       => 'Modify the autoload delay that will load a script when the user has not yet interacted with the page. Default is 15 seconds (in milliseconds).'
         )
     )
-);
-perfutils_output_admin_option( $args, $perfutils_settings );
-?>
-</table>
-
-<h2 class="itemTitle" style="margin-top: 20px;"><?php esc_html_e( 'Largest Contentful Paint Utilities', 'performance-utilities' ); ?></h2>
-
-<table class="form-table">
-<?php
-$args = array(
-    'name'              => 'preload_images',
-    'heading'           => 'Preload Images?',
-    'description'       => 'Enable the `perfutils_images_to_preload` WordPress filter to selectively preload images on the frontend.'
 );
 perfutils_output_admin_option( $args, $perfutils_settings );
 ?>
