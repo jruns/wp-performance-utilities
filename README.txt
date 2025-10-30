@@ -14,13 +14,15 @@ Improve the performance of your WordPress website.
 This plugin includes several utilities that can be activated and configured in order to improve various aspects of your website.
 
 **Utilities included:**  
-- Disable jQuery Migrate on the frontend.
-- Remove versions from external script and style source urls.
-- Enable YouTube Facade: Replace YouTube iframes with a placeholder image and delay loading videos until the user clicks on the placeholder image.
-- Preload Images: Preload specified images on specific pages and at specified viewport sizes to improve Largest Contentful Paint (LCP).
-- Move Scripts and Styles to the footer: Move specified scripts and styles to the page footer on the frontend on specific pages.
-- Remove Scripts and Styles: Remove specified scripts and styles from the frontend on specific pages.
-- Delay Scripts and Styles: Delay execution of specified scripts and styles until the page has loaded or the user has interacted with the page.
+- **Disable jQuery Migrate** on the frontend.
+- **Remove versions** from external script and style source urls.
+- **Enable YouTube Facade**: Replace YouTube iframes with a placeholder image and delay loading videos until the user clicks on the placeholder image.
+- **Preload Images**: Preload specified images on specific pages and at specified viewport sizes to improve Largest Contentful Paint (LCP).
+- **Move Scripts and Styles to the footer**: Move specified scripts and styles to the page footer on the frontend on specific pages.
+- **Remove Scripts and Styles**: Remove specified scripts and styles from the frontend on specific pages.
+- **Delay Scripts and Styles**: Delay execution of specified scripts and styles until the page has loaded or the user has interacted with the page.
+
+[Visit our wiki](https://github.com/jruns/wp-performance-utilities/wiki) to learn how to configure the plugin and use each utility.
 
 == Installation ==
 
@@ -28,9 +30,9 @@ From your WordPress dashboard
 
 1. Visit Plugins > Add New
 2. Search for "Performance Utilities"
-3. Install and Activate Performance Utilities from your Plugins page
-4. Visit Settings > Performance Utilities to configure
-5. Place related filters in your functions.php file
+3. Install and Activate _Performance Utilities_ from your Plugins page
+4. Visit _Settings_ > _Performance Utilities_ to enable utilities
+5. Implement utility-specific WordPress filters in your theme's functions.php file, if necessary
 
 == Frequently Asked Questions ==
 
