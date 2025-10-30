@@ -142,7 +142,7 @@ function perfutils_output_admin_option( $args, $perfutils_settings, $should_retu
     } else if ( ! empty( $perfutils_settings ) ) {
         if ( ! empty( $parent ) && array_key_exists( $parent, $perfutils_settings ) && array_key_exists( $name, $perfutils_settings[$parent] ) ) {
             $utility_value = $perfutils_settings[$parent][$name];
-        } else if ( array_key_exists( $name, $perfutils_settings['active_utilities'] ) ) {
+        } else if ( array_key_exists( 'active_utilities', $perfutils_settings ) && array_key_exists( $name, $perfutils_settings['active_utilities'] ) ) {
             $utility_value = $perfutils_settings['active_utilities'][$name];
         }
 
