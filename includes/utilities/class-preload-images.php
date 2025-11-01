@@ -63,14 +63,19 @@ class PerformanceUtilities_Preload_Images {
 	}
 	
 	public function render_meta_box( $post ) {
+		wp_enqueue_style( 'perfutils-preload-images-editor', plugin_dir_url( __DIR__ ) . 'css/preload_images_editor.css', array(), constant( 'PERFUTILS_VERSION' ) );
 
     	$allowed_html = array(
 			'div' => array(
+				'class' => array(),
 				'style' => array()
 			),
 			'input' => array(
+				'class' => array(),
 				'type' => array(),
-				'placeholder' => array()
+				'size' => array(),
+				'placeholder' => array(),
+				'value' => array(),
 			),
 			'select' => array(
 				'name' => array(),
@@ -79,57 +84,61 @@ class PerformanceUtilities_Preload_Images {
 			),
 			'option' => array(
 				'value' => array(),
+				'selected' => array(),
 			),
 			'br' => array()
 		);
 
 		$output = '
-		<div style="display: flex; flex-direction: column;">
-			<div style="display: flex; flex-direction: row;">
-				<div></div>
-				<div>Image URL:</div>
-				<div>Load when Screen Width is: (optional)</div>
+		<div class="perfutils-preloadimages perfutils-container">
+			<div class="perfutils-row">
+				<div class="perfutils-item"></div>
+				<div class="perfutils-item perfutils-bold">Image URL:</div>
+				<div class="perfutils-item perfutils-bold">Load when Screen Width is: (optional)</div>
 			</div>
-			<div>
-				<div>Image 1:</div>
-				<div><input type="text" placeholder="Enter the image URL" /></div>
-				<div>
+			<div class="perfutils-row">
+				<div class="perfutils-item perfutils-bold">Image 1:</div>
+				<div class="perfutils-item"><input class="fullwidth" type="text" placeholder="Enter the image URL" /></div>
+				<div class="perfutils-item">
 					<select>
+						<option value="">-- Comparison operator --</option>
 						<option value="gt">Greater than</option>
 						<option value="lt">Less than</option>
 						<option value="gteq">Greater than or equal to</option>
 						<option value="lteq">Less than or equal to</option>
 						<option value="eq">Equal to</option>
 					</select>
-					<input type="text" placeholder="Width in px" />
+					<input type="text" size="7" placeholder="Width in px" />
 				</div>
 			</div>
-			<div>
-				<div>Image 2:</div>
-				<div><input type="text" placeholder="Enter the image URL" /></div>
-				<div>
+			<div class="perfutils-row">
+				<div class="perfutils-item perfutils-bold">Image 2:</div>
+				<div class="perfutils-item"><input class="fullwidth" type="text" placeholder="Enter the image URL" /></div>
+				<div class="perfutils-item">
 					<select>
+						<option value="">-- Comparison operator --</option>
 						<option value="gt">Greater than</option>
 						<option value="lt">Less than</option>
 						<option value="gteq">Greater than or equal to</option>
 						<option value="lteq">Less than or equal to</option>
 						<option value="eq">Equal to</option>
 					</select>
-					<input type="text" placeholder="Width in px" />
+					<input type="text" size="7" placeholder="Width in px" />
 				</div>
 			</div>
-			<div>
-				<div>Image 3:</div>
-				<div><input type="text" placeholder="Enter the image URL" /></div>
-				<div>
+			<div class="perfutils-row">
+				<div class="perfutils-item perfutils-bold">Image 3:</div>
+				<div class="perfutils-item"><input class="fullwidth" type="text" placeholder="Enter the image URL" /></div>
+				<div class="perfutils-item">
 					<select>
+						<option value="">-- Comparison operator --</option>
 						<option value="gt">Greater than</option>
 						<option value="lt">Less than</option>
 						<option value="gteq">Greater than or equal to</option>
 						<option value="lteq">Less than or equal to</option>
 						<option value="eq">Equal to</option>
 					</select>
-					<input type="text" placeholder="Width in px" />
+					<input type="text" size="7" placeholder="Width in px" />
 				</div>
 			</div>
 		</div>';
