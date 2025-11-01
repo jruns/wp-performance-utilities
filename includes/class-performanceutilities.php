@@ -59,6 +59,15 @@ class PerformanceUtilities {
 	protected $settings;
 
 	/**
+	 * If we should only check wp-config.php constants for active plugins.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @var      array    $wpconfig_mode    The wp-config mode setting.
+	 */
+	protected $wpconfig_mode;
+
+	/**
 	 * The status of the HTML buffer.
 	 *
 	 * @since    0.1.0
@@ -146,8 +155,14 @@ class PerformanceUtilities {
 		$defaults = array(
 			'active_utilities' => array()
 		);
-
 		$this->settings = wp_parse_args( get_option( 'perfutils_settings' ), $defaults );
+		
+		$this->wpconfig_mode = false;
+		if( defined( 'PERFUTILS_ENABLE_WPCONFIG_MODE' ) ) {
+			if ( constant( 'PERFUTILS_ENABLE_WPCONFIG_MODE' ) ) {
+				$this->wpconfig_mode = true;
+			}
+		}
 	}
 
 	private function utility_is_active( $className ) {
@@ -160,8 +175,10 @@ class PerformanceUtilities {
 			if ( constant( $constant_name ) ) {
 				return true;
 			}
-		} else if ( array_key_exists( $utility_name, $this->settings['active_utilities'] ) && $this->settings['active_utilities'][$utility_name] ) {
-			return true;
+		} else if ( ! $this->wpconfig_mode ) {
+			if ( array_key_exists( $utility_name, $this->settings['active_utilities'] ) && $this->settings['active_utilities'][$utility_name] ) {
+				return true;
+			}
 		}
 
 		return false;
