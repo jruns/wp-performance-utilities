@@ -65,10 +65,74 @@ class PerformanceUtilities_Preload_Images {
 	public function render_meta_box( $post ) {
 
     	$allowed_html = array(
-			'div' => array(),
+			'div' => array(
+				'style' => array()
+			),
+			'input' => array(
+				'type' => array(),
+				'placeholder' => array()
+			),
+			'select' => array(
+				'name' => array(),
+				'id' => array(),
+				'class' => array(),
+			),
+			'option' => array(
+				'value' => array(),
+			),
+			'br' => array()
 		);
 
-		$output = '<div>Image Preload form goes here</div>';
+		$output = '
+		<div style="display: flex; flex-direction: column;">
+			<div style="display: flex; flex-direction: row;">
+				<div></div>
+				<div>Image URL:</div>
+				<div>Load when Screen Width is: (optional)</div>
+			</div>
+			<div>
+				<div>Image 1:</div>
+				<div><input type="text" placeholder="Enter the image URL" /></div>
+				<div>
+					<select>
+						<option value="gt">Greater than</option>
+						<option value="lt">Less than</option>
+						<option value="gteq">Greater than or equal to</option>
+						<option value="lteq">Less than or equal to</option>
+						<option value="eq">Equal to</option>
+					</select>
+					<input type="text" placeholder="Width in px" />
+				</div>
+			</div>
+			<div>
+				<div>Image 2:</div>
+				<div><input type="text" placeholder="Enter the image URL" /></div>
+				<div>
+					<select>
+						<option value="gt">Greater than</option>
+						<option value="lt">Less than</option>
+						<option value="gteq">Greater than or equal to</option>
+						<option value="lteq">Less than or equal to</option>
+						<option value="eq">Equal to</option>
+					</select>
+					<input type="text" placeholder="Width in px" />
+				</div>
+			</div>
+			<div>
+				<div>Image 3:</div>
+				<div><input type="text" placeholder="Enter the image URL" /></div>
+				<div>
+					<select>
+						<option value="gt">Greater than</option>
+						<option value="lt">Less than</option>
+						<option value="gteq">Greater than or equal to</option>
+						<option value="lteq">Less than or equal to</option>
+						<option value="eq">Equal to</option>
+					</select>
+					<input type="text" placeholder="Width in px" />
+				</div>
+			</div>
+		</div>';
 		echo wp_kses( $output, $allowed_html );
 	}
 
