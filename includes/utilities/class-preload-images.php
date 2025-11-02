@@ -168,7 +168,7 @@ class PerformanceUtilities_Preload_Images {
 			<div class="perfutils-row">
 				<div class="perfutils-item"></div>
 				<div class="perfutils-item perfutils-bold">Image URL:</div>
-				<div class="perfutils-item perfutils-bold">(optional) Load when Screen Width is:</div>
+				<div class="perfutils-item perfutils-bold">Load when Screen Width is:</div>
 			</div>' . PHP_EOL .
 			$this->render_meta_box_image_row( 1, $values['image1'] ) . PHP_EOL .
 			$this->render_meta_box_image_row( 2, $values['image2'] ) . PHP_EOL .
