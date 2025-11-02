@@ -3,7 +3,7 @@ Contributors: jruns
 Tags: performance, optimization, speed, delay, lcp
 Requires at least: 6.0
 Tested up to: 6.8
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -50,6 +50,9 @@ Because websites should be fast without costing money.
 [Visit our wiki](https://github.com/jruns/wp-performance-utilities/wiki) to learn how to configure the plugin and use each utility.
 
 == Changelog ==
+
+= 1.0.1 =
+* Only preload post meta box images on singular pages (posts, pages, custom post type pages). Don't preload them on frontpages or archive pages. Use the preload filter to preload images on those types of pages.
 
 = 1.0.0 =
 * Initial plugin repository release with several performance utilities.

@@ -26,7 +26,11 @@ class PerformanceUtilities_Preload_Images {
 	public function add_preload_tags() {
 		global $post;
 
-		$meta_values = get_post_meta( $post->ID, '_perfutils_preload_images', true );
+		$meta_values = array();
+		
+		if ( is_singular() ) {
+			$meta_values = get_post_meta( $post->ID, '_perfutils_preload_images', true );
+		}
 
 		if ( ! empty( $meta_values ) || ! empty( $this->settings['images'] ) ) {
 			// Process images to preload
@@ -81,7 +85,7 @@ class PerformanceUtilities_Preload_Images {
 				}
 			}
 
-			echo PHP_EOL . $preload_tags;
+			echo $preload_tags;
 		}
 	}
 
