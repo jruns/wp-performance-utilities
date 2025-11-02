@@ -2,26 +2,22 @@
 
 /**
  * Register all actions and filters for the plugin
- *
- * @link       https://jruns.github.io/
- * @since      0.1.0
- *
- * @package    Wp_Utilities
- * @subpackage Wp_Utilities/includes
- */
-
-/**
- * Register all actions and filters for the plugin.
- *
+ * 
  * Maintain a list of all hooks that are registered throughout
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Wp_Utilities
- * @subpackage Wp_Utilities/includes
- * @author     Jason Schramm <jason.runs@proton.me>
+ * @link       https://github.com/jruns/wp-performance-utilities
+ * @since      0.1.0
+ *
+ * @package    PerformanceUtilities
+ * @subpackage PerformanceUtilities/includes
  */
-class Wp_Utilities_Loader {
+
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+class PerformanceUtilities_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var youtubeFacades = document.querySelectorAll('.wputil-youtube-embed a');
+    var youtubeFacades = document.querySelectorAll('.perfutils-youtube-embed a');
     youtubeFacades.forEach(function (facade) {
         facade.addEventListener('click', function (e) {
 			e.preventDefault();

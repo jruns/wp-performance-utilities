@@ -3,14 +3,17 @@
 /**
  * Conditional checks for filtering page match rules
  *
- * @link       https://jruns.github.io/
+ * @link       https://github.com/jruns/wp-performance-utilities
  * @since      0.1.0
  *
- * @package    Wp_Utilities
- * @subpackage Wp_Utilities/includes
+ * @package    PerformanceUtilities
+ * @subpackage PerformanceUtilities/includes
  */
 
-class Wp_Utilities_Conditional_Checks {
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+class PerformanceUtilities_Conditional_Checks {
 	public function __construct() {
 	}
 
@@ -24,7 +27,7 @@ class Wp_Utilities_Conditional_Checks {
 			'not_is_search', 'not_is_404', 'not_is_paged', 'not_is_attachment', 'not_is_singular', 'not_is_user_logged_in'
 		);
 
-		$url_path = sanitize_title( str_replace( '/', '_', parse_url( $wp->request )['path'] ) );
+		$url_path = sanitize_title( str_replace( '/', '_', wp_parse_url( $wp->request )['path'] ) );
 
 		return array_filter( $matches, function( $value ) use( $allowed_conditionals, $url_path ) {
 			// Default to match all posts/pages if 'where' key is not set

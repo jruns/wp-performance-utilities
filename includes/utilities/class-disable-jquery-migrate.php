@@ -1,6 +1,9 @@
 <?php
 
-class Wp_Utilities_Disable_Jquery_Migrate {
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+class PerformanceUtilities_Disable_Jquery_Migrate {
 
 	public function __construct() {
 	}

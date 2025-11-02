@@ -1,0 +1,100 @@
+<?php
+
+/**
+ * The admin-specific functionality of the plugin.
+ *
+ * @link       https://github.com/jruns/wp-performance-utilities
+ * @since      0.1.0
+ *
+ * @package    PerformanceUtilities
+ * @subpackage PerformanceUtilities/admin
+ */
+
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+class PerformanceUtilities_Admin {
+
+	/**
+	 * The ID of this plugin.
+	 *
+	 * @since    0.1.0
+	 * @access   private
+	 * @var      string    $plugin_name    The ID of this plugin.
+	 */
+	private $plugin_name;
+
+	/**
+	 * The version of this plugin.
+	 *
+	 * @since    0.1.0
+	 * @access   private
+	 * @var      string    $version    The current version of this plugin.
+	 */
+	private $version;
+
+	/**
+	 * Initialize the class and set its properties.
+	 *
+	 * @since    0.1.0
+	 * @param      string    $plugin_name       The name of this plugin.
+	 * @param      string    $version    The version of this plugin.
+	 */
+	public function __construct( $plugin_name, $version ) {
+
+		$this->plugin_name = $plugin_name;
+		$this->version = $version;
+	}
+
+	public function add_options_page() {
+		add_options_page(
+			'Performance Utilities',
+			'Performance Utilities',
+			'manage_options',
+			'performance-utilities',
+			array( $this, 'render_options_page' )
+		);
+		
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_options_style' ) );
+	}
+	
+    public function registersettings() {
+		$default_array = array(
+			'active_utilities' => array()
+		);
+
+        register_setting(
+			'performance-utilities',
+			'perfutils_settings',
+			array(
+				'type'              => 'array',
+				'sanitize_callback'	=> array( $this, 'sanitize_array' ),
+				'show_in_rest'      => false,
+				'default'           => $default_array,
+			)
+		);
+    }
+
+	public function sanitize_array( $array ) {
+		return map_deep( $array, 'sanitize_text_field' );
+	}
+
+	public function render_options_page() {
+		require_once( plugin_dir_path( __FILE__ ) . 'partials/admin-options-display.php' );
+	}
+
+	public function enqueue_admin_options_style( $hook ) {
+		if ( 'settings_page_performance-utilities' !== $hook ) {
+			return;
+		}
+
+		wp_enqueue_style( 'perfutils-admin-options', plugin_dir_url( __FILE__ ) . 'css/admin_options.css', array(), constant( 'PERFUTILS_VERSION' ) );
+	}
+
+	public function add_plugin_action_links( array $links ) {
+		$settings_url = menu_page_url( 'performance-utilities', false );
+		return array_merge( array(
+			'settings' => '<a href="' . esc_url( $settings_url ) . '">' . esc_html__( 'Settings', 'performance-utilities' ) . '</a>',
+		), $links );
+	}
+}

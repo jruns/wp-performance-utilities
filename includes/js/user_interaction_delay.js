@@ -1,5 +1,5 @@
 {
-    const autoLoadDelay = wputilAutoLoadDelay;
+    const autoLoadDelay = perfutilsAutoLoadDelay;
 	const eventList = ["mouseover","keydown","touchmove","touchstart"];
     const load = () => {
 		const event = new Event("DOMUserInteraction");

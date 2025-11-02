@@ -1,0 +1,23 @@
+.perfutils-preloadimages.perfutils-container {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "perfutils-row"
+        "perfutils-row"
+        "perfutils-row";
+    gap: 16px;
+}
+
+.perfutils-preloadimages .perfutils-row {
+    display: grid;
+    grid-template-columns: 60px 1fr 1.5fr;
+    gap: 16px;
+}
+
+.perfutils-item input.fullwidth {
+    width: 100%;
+}
+
+.perfutils-bold {
+    font-weight: 600;
+}
