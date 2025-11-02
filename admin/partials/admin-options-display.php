@@ -75,7 +75,7 @@ perfutils_output_admin_option( $args, $perfutils_settings, $perfutils_wpconfig_m
 $args = array(
     'name'              => 'preload_images',
     'heading'           => 'Preload Images',
-    'description'       => 'Enable the <code>perfutils_images_to_preload</code> WordPress filter to selectively preload images on the frontend. <a href="https://github.com/jruns/wp-performance-utilities/wiki/Preload-Images" target="_blank">Learn how to use the filter</a>.'
+    'description'       => 'Enable the <i>Preload Images</i> post meta box and the <code>perfutils_images_to_preload</code> WordPress filter to preload images on specific pages on the frontend. <a href="https://github.com/jruns/wp-performance-utilities/wiki/Preload-Images" target="_blank">Learn how to use the utility</a>.'
 );
 perfutils_output_admin_option( $args, $perfutils_settings, $perfutils_wpconfig_mode );
 ?>
@@ -220,6 +220,7 @@ function perfutils_output_admin_option( $args, $perfutils_settings, $perfutils_w
 			'target' => array(),
 		),
         'code' => array(),
+        'i' => array(),
         'p' => array(),
         'br' => array(),
     );
