@@ -175,7 +175,7 @@ class PerformanceUtilities_Preload_Images {
 			$this->render_meta_box_image_row( 3, $values['image3'] ) . PHP_EOL .
 		'</div>';
 
-		wp_nonce_field( 'perfutils_preload_images_metabox', 'perfutils_preload_images_metabox_nonce' );
+		wp_nonce_field( 'perfutils_preloadimages_metabox', 'perfutils_preloadimages_metabox_nonce' );
 		echo wp_kses( $output, $allowed_html );
 	}
 
@@ -214,7 +214,7 @@ class PerformanceUtilities_Preload_Images {
 			return false;
 		}
 
-		if ( ! isset( $_POST['perfutils_preload_images_metabox_nonce'] ) || ! wp_verify_nonce( wp_unslash( $_POST['perfutils_preload_images_metabox_nonce'] ), 'perfutils_preload_images_metabox' ) ) {
+		if ( ! array_key_exists( 'perfutils_preloadimages_metabox_nonce', $_POST ) || ! wp_verify_nonce( wp_unslash( $_POST['perfutils_preloadimages_metabox_nonce'] ), 'perfutils_preloadimages_metabox' ) ) {
 			return false;
 		}
 
