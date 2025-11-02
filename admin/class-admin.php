@@ -68,7 +68,7 @@ class PerformanceUtilities_Admin {
 			'perfutils_settings',
 			array(
 				'type'              => 'array',
-				'sanitize_callback'		=> array( $this, 'sanitize_array' ),
+				'sanitize_callback'	=> array( $this, 'sanitize_array' ),
 				'show_in_rest'      => false,
 				'default'           => $default_array,
 			)
