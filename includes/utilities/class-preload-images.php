@@ -7,7 +7,7 @@ class PerformanceUtilities_Preload_Images {
 
 	private $settings;
 
-	public static $needs_html_buffer = true;
+	public static $needs_html_buffer = false;
 	public static $runs_in_admin = true;
 
 	public function __construct() {
@@ -18,36 +18,71 @@ class PerformanceUtilities_Preload_Images {
 		$this->settings = apply_filters( 'perfutils_images_to_preload', $this->settings ) ?? $this->settings;
 	}
 
-	public function process_images( $buffer ) {
+	public function filter_settings() {
 		// Filter out settings that are not valid for the current page, based on conditional matches
 		$this->settings['images'] = PerformanceUtilities_Conditional_Checks::filter_matches( $this->settings['images'] );
+	}
 
-		$preload_tags = '';
+	public function add_preload_tags() {
+		global $post;
 
-		// Process images to preload
-		if ( ! empty( $this->settings['images'] ) ) {
+		$meta_values = get_post_meta( $post->ID, '_perfutils_preload_images', true );
 
-			// Process specific urls to insert
-			foreach( $this->settings['images'] as $image_setting ) {
+		if ( ! empty( $meta_values ) || ! empty( $this->settings['images'] ) ) {
+			// Process images to preload
+			$preload_tags = '';
+
+			$defaults = array(
+				'image1' => array(),
+				'image2' => array(),
+				'image3' => array(),
+			);
+			$meta_values = wp_parse_args( $meta_values, $defaults );
+
+			$images_array = array_merge( $this->settings['images'], $meta_values );
+
+			foreach( $images_array as $image_setting ) {
 				if ( array_key_exists( 'url', $image_setting ) && ! empty( $image_setting['url'] ) ) {
 					$media_query = '';
+					$url = esc_url( $image_setting['url'] );
 
-					if ( array_key_exists( 'args', $image_setting ) && ! empty( $image_setting['args'] ) ) {
-						if ( array_key_exists( 'media', $image_setting['args'] ) && ! empty( $image_setting['args']['media'] ) ) {
-							$media_query = "media=\"{$image_setting['args']['media']}\" ";
+					if ( array_key_exists( 'args', $image_setting ) && ! empty( $image_setting['args'] ) && array_key_exists( 'media', $image_setting['args'] ) && ! empty( $image_setting['args']['media'] ) ) {
+						// Image from WP filter
+						$media_query = "media=\"" . trim( $image_setting['args']['media'] ) . "\" ";
+					} else if ( array_key_exists( 'comparison', $image_setting ) && array_key_exists( 'width', $image_setting ) && ! empty( $image_setting['width'] ) ) {
+						// Image from meta box
+						$width = sanitize_text_field( $image_setting['width'] );
+						if ( is_numeric( $width ) ) {
+							$width = "{$width}px";
 						}
-					}
+						$comparison = sanitize_key( $image_setting['comparison'] );
 
-					$preload_tags = "<link rel=\"preload\" href=\"{$image_setting['url']}\" as=\"image\" fetchpriority=\"high\" {$media_query}/>" . PHP_EOL . $preload_tags;
+						switch( $comparison ) {
+							case 'eq':
+								$comparison = '=';
+								break;
+							case 'lteq':
+								$comparison = '<=';
+								break;
+							case 'lt':
+								$comparison = '<';
+								break;
+							case 'gteq':
+								$comparison = '>=';
+								break;
+							case 'gt':
+							default:
+								$comparison = '>';
+								break;
+						}
+						$media_query = "media=\"(width $comparison $width)\" ";
+					}
+					$preload_tags = $preload_tags . "<link rel=\"preload\" href=\"{$url}\" as=\"image\" fetchpriority=\"high\" {$media_query}/>" . PHP_EOL;
 				}
 			}
-		}
 
-		if ( ! empty( $preload_tags ) ) {
-			$buffer = str_replace( '</head>', $preload_tags . '</head>', $buffer );
+			echo $preload_tags;
 		}
-
-		return $buffer;
 	}
 
 	public function add_meta_box( $post_type, $post ) {
@@ -68,7 +103,10 @@ class PerformanceUtilities_Preload_Images {
 						'default' => array()
 					)
 				),
-				'sanitize_callback' => array( $this, 'sanitize_meta_value' )
+				'sanitize_callback' => array( $this, 'sanitize_meta_value' ),
+				'auth_callback'     => function() {
+					return current_user_can( 'edit_posts' );
+				}
 			)
 		);
 
@@ -170,8 +208,8 @@ class PerformanceUtilities_Preload_Images {
 	}
 
 	public function save_metabox_data( $post_id ) {
-		if ( array_key_exists( 'perfutils_preloadimages', $_POST ) ) {
-			$values = $_POST['perfutils_preloadimages'];
+		if ( array_key_exists( 'perfutils_preloadimages', $_POST ) && is_array( $_POST['perfutils_preloadimages'] ) ) {
+			$values = map_deep( $_POST['perfutils_preloadimages'], 'sanitize_text_field' );
 
 			update_post_meta(
 				$post_id,
@@ -187,7 +225,8 @@ class PerformanceUtilities_Preload_Images {
 	 * @since    1.0.0
 	 */
 	public function run() {
-		add_filter( 'perfutils_modify_final_output', array( $this, 'process_images' ), 9 );
+		add_filter( 'wp', array( $this, 'filter_settings' ) );
+		add_action( 'wp_head', array( $this, 'add_preload_tags' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ), 100, 2 );
 		add_action( 'save_post', array( $this, 'save_metabox_data' ) );
 	}
