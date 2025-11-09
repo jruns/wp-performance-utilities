@@ -89,6 +89,10 @@ class PerformanceUtilities_Preload_Images {
 		}
 	}
 
+	/**
+	 * Post/page meta box functionality
+	 */
+
 	public function add_meta_box( $post_type, $post ) {
 
 		register_meta(
@@ -234,6 +238,101 @@ class PerformanceUtilities_Preload_Images {
 	}
 
 	/**
+	 * Register additional Elementor document controls for preloading images
+	 *
+	 * @param \Elementor\Core\DocumentTypes\PageBase $document The PageBase document instance.
+	 * 
+	 * @since    1.1.0
+	 */
+	public function register_elementor_document_controls( $document ) {
+		if ( ! $document instanceof \Elementor\Core\DocumentTypes\PageBase || ! $document::get_property( 'has_elements' ) ) {
+			return;
+		}
+
+		$comparison_options = array(
+			'' 		=> esc_html__( '-- Comparison operator --', 'performance-utilities' ),
+			'gt' 	=> esc_html__( 'Greater than', 'performance-utilities' ),
+			'lt' 	=> esc_html__( 'Less than', 'performance-utilities' ),
+			'gteq' 	=> esc_html__( 'Greater than or equal to', 'performance-utilities' ),
+			'lteq' 	=> esc_html__( 'Less than or equal to', 'performance-utilities' ),
+			'eq' 	=> esc_html__( 'Equal to', 'performance-utilities' ),
+		);
+
+		//$values = get_post_meta( $post->ID, '_perfutils_preload_images', true );
+
+  		//$values = wp_parse_args( $values, $defaults );*/
+
+
+		$repeater = new \Elementor\Repeater();
+
+		$document->start_controls_section(
+			'preload_images_section',
+			[
+				'label' => esc_html__( 'Preload Images', 'performance-utilities' ),
+				'tab' => \Elementor\Controls_Manager::TAB_SETTINGS,
+			]
+		);
+
+		$repeater->add_control(
+			'url',
+			[
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => '',
+				'placeholder' => 'Enter the image URL',
+				'label_block' => true,
+			]
+		);
+
+		$repeater->add_control(
+			'comparison',
+			[
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'options' => $comparison_options,
+				'label_block' => true,
+			]
+		);
+
+		$repeater->add_control(
+			'width',
+			[
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => '',
+				'placeholder' => 'Width in px',
+				'label_block' => true,
+				'condition' => [
+					'comparison!' => '',
+				],
+			]
+		);
+
+
+		$document->add_control(
+			'perfutils_preloadimages',
+			[
+				'max_items' => 3,
+				'min_items' => 0,
+				'type' => \Elementor\Controls_Manager::REPEATER,
+				'fields' => $repeater->get_controls(),
+				'title_field' => 'Image',
+				'prevent_empty' => false,
+				'button_text' => esc_html__( 'Add Image', 'performance-utilities' ),
+				'default' => array(),
+				'item_actions' => [
+					'add' => true,
+					'remove' => true,
+					'duplicate' => false,
+					'sort' => false,
+				],
+			]
+		);
+
+		$document->end_controls_section();
+
+		wp_enqueue_style( 'perfutils-preload-images-elementor-editor', plugin_dir_url( __DIR__ ) . 'css/preload_images_elementor_editor.css', array(), constant( 'PERFUTILS_VERSION' ) );
+	}
+
+
+	/**
 	 * Execute commands after initialization
 	 *
 	 * @since    1.0.0
@@ -241,7 +340,12 @@ class PerformanceUtilities_Preload_Images {
 	public function run() {
 		add_filter( 'wp', array( $this, 'filter_settings' ) );
 		add_action( 'wp_head', array( $this, 'add_preload_tags' ) );
+
+		// Post/page meta box
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ), 100, 2 );
 		add_action( 'save_post', array( $this, 'save_metabox_data' ) );
+
+		// Elementor document controls
+		add_action( 'elementor/documents/register_controls', array( $this, 'register_elementor_document_controls' ) );
 	}
 }

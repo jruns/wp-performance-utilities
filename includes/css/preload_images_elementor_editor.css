@@ -1,0 +1,12 @@
+.elementor-control-perfutils_preloadimages {
+    counter-reset: preload-images-counter;
+}
+
+.elementor-control-perfutils_preloadimages .elementor-repeater-fields {
+    counter-increment: preload-images-counter;
+}
+
+.elementor-control-perfutils_preloadimages .elementor-repeater-fields .elementor-repeater-row-item-title::after {
+    content: counter(preload-images-counter);
+    margin-left: 3px;
+}
