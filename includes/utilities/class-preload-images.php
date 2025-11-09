@@ -30,6 +30,18 @@ class PerformanceUtilities_Preload_Images {
 		
 		if ( is_singular() ) {
 			$meta_values = get_post_meta( $post->ID, '_perfutils_preload_images', true );
+			if ( empty( $meta_values ) ) {
+				$meta_values = array();
+			}
+
+			/* Only query Elementor settings if plugin is active */
+			if ( defined('ELEMENTOR_VERSION') ) {
+				$elementor_values = get_post_meta( $post->ID, '_elementor_page_settings', true );
+				if ( ! empty( $elementor_values ) && is_array( $elementor_values ) && array_key_exists( 'perfutils_preloadimages', $elementor_values) ) {
+					$elementor_values = $elementor_values['perfutils_preloadimages'];
+					$meta_values = array_merge( $elementor_values, $meta_values );
+				}
+			}
 		}
 
 		if ( ! empty( $meta_values ) || ! empty( $this->settings['images'] ) ) {
@@ -258,11 +270,6 @@ class PerformanceUtilities_Preload_Images {
 			'eq' 	=> esc_html__( 'Equal to', 'performance-utilities' ),
 		);
 
-		//$values = get_post_meta( $post->ID, '_perfutils_preload_images', true );
-
-  		//$values = wp_parse_args( $values, $defaults );*/
-
-
 		$repeater = new \Elementor\Repeater();
 
 		$document->start_controls_section(
@@ -293,7 +300,7 @@ class PerformanceUtilities_Preload_Images {
 		);
 
 		$repeater->add_control(
-			'screen_width',
+			'width',
 			[
 				'type' => \Elementor\Controls_Manager::TEXT,
 				'default' => '',
@@ -304,7 +311,6 @@ class PerformanceUtilities_Preload_Images {
 				],
 			]
 		);
-
 
 		$document->add_control(
 			'perfutils_preloadimages',
