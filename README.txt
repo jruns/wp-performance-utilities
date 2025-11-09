@@ -38,6 +38,7 @@ From your WordPress dashboard
 
 1. Admin Settings Page
 2. Preload Images utility's post meta box
+3. Preload Images utility's Elementor page settings
 
 == Frequently Asked Questions ==
 
@@ -50,6 +51,9 @@ Because websites should be fast without costing money.
 [Visit our wiki](https://github.com/jruns/wp-performance-utilities/wiki) to learn how to configure the plugin and use each utility.
 
 == Changelog ==
+
+= 1.1.0 =
+* Add Elementor page setting preloading up to 3 images.
 
 = 1.0.1 =
 * Only preload post meta box images on singular pages (posts, pages, custom post type pages). Don't preload them on frontpages or archive pages. Use the preload filter to preload images on those types of pages.
