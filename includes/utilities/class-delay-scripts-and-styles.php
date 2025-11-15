@@ -145,12 +145,12 @@ class SpeedyUtilities_Delay_Scripts_And_Styles {
 		$autoLoadDelay = null;
 
 		if ( defined( $delay_constant ) && is_numeric( constant( $delay_constant ) ) ) {
-			$autoLoadDelay = intval( constant( $delay_constant ) );
+			$autoLoadDelay = intval( sanitize_text_field( constant( $delay_constant ) ) );
 		} else {
 			// get option, default to 15000 milliseconds if not set
 			$options = (array) get_option( 'speedyutils_settings', array() );
 			if ( array_key_exists( $className, $options ) && array_key_exists( $delay_var, $options[$className] ) ) {
-				$autoLoadDelay = $options[$className][$delay_var];
+				$autoLoadDelay = intval( sanitize_text_field( $options[$className][$delay_var] ) );
 			}
 			if ( empty( $autoLoadDelay ) ) {
 				$autoLoadDelay = 15000;
